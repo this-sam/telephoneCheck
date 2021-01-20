@@ -1,3 +1,5 @@
+"use strict";
+
 const checkNum = /^\d+$/;
 const checkSep = /[-\s]$/;
 
@@ -13,11 +15,23 @@ function splitPhoneStr(str, sp) {
 	return [str.slice(0, sp), str.slice(sp, str.length)];
 }
 
-function checkCode(str, len) {
+/**
+ * CheckCode - takes something and does something with it (explain that here)
+ * 
+ * totally overkill for this but doesn't hurt to practice
+ * 
+ * JSDoc style comments for methods are tidy. 
+ * 
+ * @param {String} codeString incoming string 
+ * @param {*} len 
+ * 
+ * @returns {Boolean} true for valid code, otherwise false
+ */
+function checkCode(codeString, len) {
 	// returns true if code section contains only numbers and is correct len
-	if(str.length !== len) {
+	if(codeString.length !== len) {
 		return false;
-	} else if(!checkNum.test(str)) {
+	} else if(!checkNum.test(codeString)) {
 		return false;
 	}
 	return true;
@@ -43,11 +57,13 @@ function cleanPhoneStr(str) {
 	return str;
 }
 
-function telephoneCheck(str) {
-	str = formatPhoneStr(str, -4);
-	str = formatPhoneStr(str, -8);
-	str = formatPhoneStr(str, -12);
-	const codes = str.split(" ").reverse();
+function telephoneCheck(phoneCandidate) {
+	// this is the section of logic that I find confusing
+	// 
+	phoneCandidate = formatPhoneStr(phoneCandidate, -4);
+	phoneCandidate = formatPhoneStr(phoneCandidate, -8);
+	phoneCandidate = formatPhoneStr(phoneCandidate, -12);
+	const codes = phoneCandidate.split(" ").reverse();
 	const codeLengths = [4, 3, 3];
 	for(let ind in codeLengths) {
 		if(!checkCode(codes[ind], codeLengths[ind])) {
