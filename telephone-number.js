@@ -1,21 +1,20 @@
 const checkNum = /^\d+$/;
 const checkSep = /[-\s]$/;
 
-function stringTrimSep(str) {
-	return (str.slice(0, -1));
-}
-
 function formatPhoneStr(str, ind) {
+	// cleans seperators to be consistent
 	const [editStr, keepStr] = splitPhoneStr(str, ind);
 	const cleanStr = cleanPhoneStr(editStr);
 	return cleanStr + keepStr;
 }
 
 function splitPhoneStr(str, sp) {
+	// seperates string into two parts
 	return [str.slice(0, sp), str.slice(sp, str.length)];
 }
 
 function checkCode(str, len) {
+	// returns true if code section contains only numbers and is correct len
 	if(str.length !== len) {
 		return false;
 	} else if(!checkNum.test(str)) {
@@ -25,6 +24,7 @@ function checkCode(str, len) {
 }
 
 function removeParenthesis(str) {
+	// corrects parenthesis to consistent seperators
 	if(str.slice(-1, str.length) === ")") {
 		if(str.slice(-5, -4) === "(") {
 			return str.slice(0, -5) + " " + str.slice(-4, -1);
@@ -34,8 +34,9 @@ function removeParenthesis(str) {
 }
 
 function cleanPhoneStr(str) {
+	// cleans string section to consistent seperators
 	while(checkSep.test(str)) {
-		str = stringTrimSep(str);
+		str = str.slice(0, -1);
 	}
 	str = removeParenthesis(str);
 	str += " ";
