@@ -18,7 +18,7 @@ function splitPhoneStr(str, sp) {
 /**
  * CheckCode - takes something and does something with it (explain that here)
  * 
- * totally overkill for this but doesn't hurt to practice
+ * totally overkill for this exercise but doesn't hurt to practice
  * 
  * JSDoc style comments for methods are tidy. 
  * 
@@ -59,7 +59,7 @@ function cleanPhoneStr(str) {
 
 function telephoneCheck(phoneCandidate) {
 	// this is the section of logic that I find confusing
-	// 
+	// comments to explain the assumptions you're making about input string and why you therefore chose these indices would be cool
 	phoneCandidate = formatPhoneStr(phoneCandidate, -4);
 	phoneCandidate = formatPhoneStr(phoneCandidate, -8);
 	phoneCandidate = formatPhoneStr(phoneCandidate, -12);
